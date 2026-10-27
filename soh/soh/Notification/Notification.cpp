@@ -90,10 +90,11 @@ void Window::Draw() {
         ImGui::SetWindowPos(notificationPos);
 
         if (notification.itemIcon != nullptr) {
+            float iconScale = CVarGetFloat(CVAR_SETTING("Notifications.Size"), 1.8f);
+            float iconSize = 32.0f * iconScale; // 32 @ 1.0 → ~58 @ 1.8
             ImGui::Image(
-                std::dynamic_pointer_cast<Fast::Fast3dGui>(Ship::Context::GetRawInstance()->GetWindow()->GetGui())
-                    ->GetTextureByName(notification.itemIcon),
-                ImVec2(24, 24));
+                std::dynamic_pointer_cast<Fast::Fast3dGui>(Ship::Context::GetRawInstance()->GetWindow()->GetGui())->GetTextureByName(notification.itemIcon),
+                ImVec2(iconSize, iconSize));
             ImGui::SameLine();
         }
         if (!notification.prefix.empty()) {

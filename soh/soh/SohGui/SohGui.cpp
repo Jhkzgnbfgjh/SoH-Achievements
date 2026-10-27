@@ -43,6 +43,8 @@
 #include "soh/Enhancements/timesplits/TimeSplitsSettings.h"
 #include "soh/Enhancements/randomizer/Plandomizer.h"
 #include "soh/SohGui/SohModals.h"
+#include "soh/Enhancements/achievements/AchievementSystem.h"
+#include "soh/Enhancements/achievements/AchievementSystemInit.h"
 
 namespace SohGui {
 
@@ -270,6 +272,8 @@ void SetupGuiElements() {
     gui->AddGuiWindow(mTimeDisplayWindow);
     mAnchorRoomWindow = std::make_shared<AnchorRoomWindow>(CVAR_WINDOW("AnchorRoom"), "Anchor Room");
     gui->AddGuiWindow(mAnchorRoomWindow);
+    // no final de SohGui::SetupGuiElements()
+    InitAchievementsSystem();
 }
 
 void Destroy() {
