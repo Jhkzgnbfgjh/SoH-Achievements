@@ -14,7 +14,7 @@ extern "C" {
 // ============================================================
 
 static bool HasHearts(int32_t count) {
-    return gSaveContext.healthCapacity > count * 16;
+    return gSaveContext.healthCapacity >= count * 16;
 }
 
 static bool HasSkulltulas(int32_t count) {
@@ -360,7 +360,7 @@ std::vector<Achievement> BuildAchievements() {
         .description = "Obtenha seu primeiro Heart Container.",
         .category = AchievementCategory::Collection,
         .hidden = false,
-        .check = [](PlayState* play) { return HasHearts(3); },
+        .check = [](PlayState* play) { return HasHearts(4); },
     });
 
     list.push_back({
