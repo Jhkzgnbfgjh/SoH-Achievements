@@ -119,6 +119,16 @@ std::vector<Achievement> BuildAchievements() {
     });
 
     list.push_back({
+        .id = "played_sarias_song_for_mido",
+        .name = "O Luto de Mido",
+        .description = "Toque a Canção de Saria para Mido como adulto.",
+        .category = AchievementCategory::Main,
+        .hidden = false,
+        .icon = Icon(ITEM_SONG_SARIA),
+        .check = [](PlayState* play) { return Flags_GetEventChkInf(EVENTCHKINF_PLAYED_SARIAS_SONG_FOR_MIDO_AS_ADULT); },
+    });
+
+    list.push_back({
         .id = "forest_temple_cleared",
         .name = "Primeiro Selo",
         .description = "Conclua o Templo da Floresta.",
@@ -138,6 +148,16 @@ std::vector<Achievement> BuildAchievements() {
     });
 
     list.push_back({
+        .id = "ice_cavern_cleared",
+        .name = "O Gelo Eterno",
+        .description = "Obtenha as Iron Boots na Caverna de Gelo.",
+        .category = AchievementCategory::Main,
+        .hidden = false,
+        .icon = Icon(ITEM_BOOTS_IRON),
+        .check = [](PlayState* play) { return INV_CONTENT(ITEM_BOOTS_IRON) == ITEM_BOOTS_IRON; },
+    });
+
+    list.push_back({
         .id = "water_temple_cleared",
         .name = "As Profundezas",
         .description = "Conclua o Templo da Água.",
@@ -148,6 +168,15 @@ std::vector<Achievement> BuildAchievements() {
     });
 
     list.push_back({
+        .id = "lake_hylia_restored",
+        .name = "Águas Restauradas",
+        .description = "Restaure o Lago Hylia derrotando o Templo da Água.",
+        .category = AchievementCategory::Main,
+        .hidden = false,
+        .check = [](PlayState* play) { return Flags_GetEventChkInf(EVENTCHKINF_RAISED_LAKE_HYLIA_WATER); },
+    });
+
+    list.push_back({
         .id = "well_drained",
         .name = "O Poço Sombrio",
         .description = "Drene o Poço de Kakariko.",
@@ -155,6 +184,16 @@ std::vector<Achievement> BuildAchievements() {
         .hidden = false,
         .icon = Icon(ITEM_LENS),
         .check = [](PlayState* play) { return Flags_GetEventChkInf(EVENTCHKINF_DRAINED_WELL_IN_KAKARIKO); },
+    });
+
+    list.push_back({
+        .id = "bottom_of_the_well",
+        .name = "O Fundo do Poço",
+        .description = "Obtenha a Lens of Truth no Fundo do Poço.",
+        .category = AchievementCategory::Main,
+        .hidden = false,
+        .icon = Icon(ITEM_LENS),
+        .check = [](PlayState* play) { return INV_CONTENT(ITEM_LENS) == ITEM_LENS; },
     });
 
     list.push_back({
@@ -199,11 +238,21 @@ std::vector<Achievement> BuildAchievements() {
         .description = "Reúna todos os seis Medalhões.",
         .category = AchievementCategory::Main,
         .hidden = false,
-        .icon = Icon(ITEM_GAUNTLETS_SILVER),
+        .icon = Icon(ITEM_ARROW_LIGHT),
         .check =
             [](PlayState* play) {
                 return Flags_GetEventChkInf(EVENTCHKINF_RETURNED_TO_TEMPLE_OF_TIME_WITH_ALL_MEDALLIONS);
             },
+    });
+
+    list.push_back({
+        .id = "entered_ganons_castle",
+        .name = "O Covil do Mal",
+        .description = "Descubra o Castelo de Ganon.",
+        .category = AchievementCategory::Main,
+        .hidden = false,
+        .icon = Icon(ITEM_KEY_BOSS),
+        .check = [](PlayState* play) { return Flags_GetEventChkInf(EVENTCHKINF_ENTERED_GANONS_CASTLE_EXTERIOR); },
     });
 
     list.push_back({
@@ -220,19 +269,9 @@ std::vector<Achievement> BuildAchievements() {
     });
 
     list.push_back({
-        .id = "entered_ganons_castle",
-        .name = "O Covil do Mal",
-        .description = "Entre no Castelo de Ganon.",
-        .category = AchievementCategory::Main,
-        .hidden = false,
-        .icon = Icon(ITEM_KEY_BOSS),
-        .check = [](PlayState* play) { return Flags_GetEventChkInf(EVENTCHKINF_ENTERED_GANONS_CASTLE_EXTERIOR); },
-    });
-
-    list.push_back({
-        .id = "defeat_ganon",
-        .name = "O Fim do Rei do Mal",
-        .description = "Derrote Ganondorf e restaure a paz em Hyrule.",
+        .id = "ganons_castle_cleared",
+        .name = "A Subida...",
+        .description = "Complete todos os trials do Castelo de Ganon.",
         .category = AchievementCategory::Main,
         .hidden = false,
         .icon = Icon(ITEM_GAUNTLETS_GOLD),
@@ -272,6 +311,16 @@ std::vector<Achievement> BuildAchievements() {
         .check = [](PlayState* play) {
             return (gSaveContext.inventory.equipment & (1 << EQUIP_INV_SWORD_BIGGORON)) != 0;
         },
+    });
+
+    list.push_back({
+        .id = "gerudo_training_ground",
+        .name = "O Ninja Gerudo",
+        .description = "Obtenha as Ice Arrows no Gerudo Training Ground.",
+        .category = AchievementCategory::Sidequest,
+        .hidden = false,
+        .icon = Icon(ITEM_ARROW_ICE),
+        .check = [](PlayState* play) { return INV_CONTENT(ITEM_ARROW_ICE) == ITEM_ARROW_ICE; },
     });
 
     list.push_back({
@@ -317,7 +366,7 @@ std::vector<Achievement> BuildAchievements() {
     list.push_back({
         .id = "horseback_archery_1000",
         .name = "Arqueiro Montado",
-        .description = "Faça 1000 pontos no Horseback Archery em Lon Lon Ranch.",
+        .description = "Faça 1000 pontos no Horseback Archery em Gerudo Fortress.",
         .category = AchievementCategory::Minigame,
         .hidden = false,
         .icon = Icon(ITEM_BOW),
@@ -348,6 +397,30 @@ std::vector<Achievement> BuildAchievements() {
             [](PlayState* play) {
                 int32_t t = gSaveContext.highScores[HS_DAMPE_RACE];
                 return t > 0 && t < 60;
+            },
+    });
+
+    list.push_back({
+        .id = "mask_of_truth",
+        .name = "A Verdade Revelada",
+        .description = "Obtenha a Máscara da Verdade.",
+        .category = AchievementCategory::Sidequest,
+        .hidden = false,
+        .icon = Icon(ITEM_MASK_TRUTH),
+        .check = [](PlayState* play) { return INV_CONTENT(ITEM_MASK_TRUTH) == ITEM_MASK_TRUTH; },
+    });
+
+    list.push_back({
+        .id = "running_man",
+        .name = "O Homem Mais Rápido",
+        .description = "''Vença'' o Homem Corredor na Cidade de Hyrule em menos de 46 segundos.",
+        .category = AchievementCategory::Minigame,
+        .hidden = false,
+        .icon = Icon(ITEM_BOOTS_HOVER), // Bota de Hover como ícone de velocidade
+        .check =
+            [](PlayState* play) {
+                int32_t t = gSaveContext.highScores[HS_MARATHON];
+                return t > 0 && t < 46;
             },
     });
 
@@ -459,6 +532,32 @@ std::vector<Achievement> BuildAchievements() {
             },
     });
 
+    list.push_back({
+        .id = "max_quiver",
+        .name = "Arqueiro Supremo",
+        .description = "Obtenha a aljava de 50 flechas.",
+        .category = AchievementCategory::Collection,
+        .hidden = false,
+        .icon = Icon(ITEM_BOW),
+        .check = [](PlayState* play) {
+            // Extrai os 2 bits do UPG_QUIVER. Se for 2, é o nível máximo.
+            return ((gSaveContext.inventory.upgrades >> (UPG_QUIVER * 2)) & 3) == 2;
+        },
+    });
+
+    list.push_back({
+        .id = "max_bomb_bag",
+        .name = "Arsenal Explosivo",
+        .description = "Obtenha a bolsa de bombas de 40.",
+        .category = AchievementCategory::Collection,
+        .hidden = false,
+        .icon = Icon(ITEM_BOMB),
+        .check = [](PlayState* play) {
+            // Extrai os 2 bits do UPG_BOMB_BAG. Se for 2, é o nível máximo.
+            return ((gSaveContext.inventory.upgrades >> (UPG_BOMB_BAG * 2)) & 3) == 2;
+        },
+    });
+
     // --------------------------------------------------------
     // MISC — Extras
     // --------------------------------------------------------
@@ -481,6 +580,15 @@ std::vector<Achievement> BuildAchievements() {
         .category = AchievementCategory::Misc,
         .hidden = true,
         .check = [](PlayState* play) { return Flags_GetEventChkInf(EVENTCHKINF_CAUGHT_BY_CASTLE_GUARDS); },
+    });
+
+        list.push_back({
+        .id = "frogs_choir",
+        .name = "Maestro dos Sapos",
+        .description = "Toque a Canção da Floresta para o Maestro dos Sapos.",
+        .category = AchievementCategory::Misc,
+        .hidden = false,
+        .check = [](PlayState* play) { return Flags_GetEventChkInf(EVENTCHKINF_SONGS_FOR_FROGS_CHOIR); },
     });
 
     return list;
