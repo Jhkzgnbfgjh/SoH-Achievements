@@ -14,6 +14,22 @@
 
 <br>
 
+> [!IMPORTANT]  
+> **Este é um fork focado no desenvolvimento de um Sistema de Conquistas.**
+> 
+> O objetivo deste fork é adicionar um sistema local de conquistas (estilo RetroAchievements) integrado nativamente à engine do Ship of Harkinian, baseado na versão **9.3.1 (Dewey Bravo)**.
+> 
+> 🏆 **39 conquistas** iniciais cobrindo história, sidequests, minigames e colecionáveis.
+> 💾 Salvamento automático por arquivo de save em JSON.
+> 🔔 Popups estilizados com ícones e sons originais do jogo.
+> 
+> Para a documentação técnica de como o sistema funciona e quais arquivos foram modificados, leia o [README do módulo](soh/soh/Enhancements/achievements/README.md).
+> 
+> ---
+> *Abaixo segue a documentação original do Ship of Harkinian.*
+
+<br>
+
 Crie este arquivo dentro da pasta de conquistas:
 markdown
 
