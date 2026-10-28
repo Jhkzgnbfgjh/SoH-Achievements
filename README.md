@@ -1,3 +1,98 @@
+> [!IMPORTANT]  
+> **Este é um fork focado no desenvolvimento de um Sistema de Conquistas.**
+> 
+> O objetivo deste fork é adicionar um sistema local de conquistas (estilo RetroAchievements) integrado nativamente à engine do Ship of Harkinian, baseado na versão **9.3.1 (Dewey Bravo)**.
+> 
+> 🏆 **39 conquistas** iniciais cobrindo história, sidequests, minigames e colecionáveis.
+> 💾 Salvamento automático por arquivo de save em JSON.
+> 🔔 Popups estilizados com ícones e sons originais do jogo.
+> 
+> Para a documentação técnica de como o sistema funciona e quais arquivos foram modificados, leia o [README do módulo](soh/soh/Enhancements/achievements/README.md).
+> 
+> ---
+> *Abaixo segue a documentação original do Ship of Harkinian.*
+
+<br>
+
+Crie este arquivo dentro da pasta de conquistas:
+markdown
+
+# Achievements System
+
+Sistema local de conquistas estilo RetroAchievements para o Ship of Harkinian.
+
+## O que tem?
+- **39 conquistas** divididas em 5 categorias (História, Sidequest, Minigame, Coleta, Extras).
+- **Persistência por save file** (`achievements_save_<N>.json`), com migração automática do formato antigo `.txt`.
+- **Janela nativa** em `Settings -> Achievements` com filtros, barra de progresso e ícones.
+- **Popups customizados** com ícone do item, cor por categoria, duração de 6s e som de "Item Get" do OoT.
+- **Toggle global** (liga/desliga) e **botão de reset** por save.
+
+## ⚠️ Arquivos do core modificados
+
+Para integrar este sistema, duas alterações foram feitas em arquivos upstream:
+
+### 1. `soh/soh/SohGui/SohGui.cpp`
+Adiciona no topo:
+```cpp
+#include "soh/Enhancements/achievements/AchievementSystemInit.h"
+
+E ao final de SetupGuiElements():
+cpp
+
+InitAchievementsSystem();
+
+2. soh/soh/Notification/Notification.cpp
+
+No método Draw(), o ícone da notificação agora escala com a cvar Notifications.Size:
+cpp
+
+float iconScale = CVarGetFloat(CVAR_SETTING("Notifications.Size"), 1.8f);
+float iconSize  = 32.0f * iconScale;
+ImGui::Image(tex, ImVec2(iconSize, iconSize));
+
+⚠️ Ao atualizar do upstream (Shipwright)
+
+Este código foi baseado na tag 9.3.1 (Dewey Bravo).
+Ao rodar git pull upstream develop, os arquivos SohGui.cpp e Notification.cpp podem conflitar. Resolva os conflitos reaplicando as duas modificações acima. Os arquivos dentro desta pasta (achievements/) são novos e não conflitarão.
+Estrutura de Arquivos
+
+    Achievement.h — Definição do modelo de dados.
+
+    AchievementData.cpp — Lista com as 39 conquistas e suas lógicas de checagem.
+
+    AchievementSystem.h/.cpp — Core do sistema (leitura/escrita JSON, loop de checagem).
+
+    AchievementSystemInit.h/.cpp — Ponto de entrada (hooks de frame e load game).
+
+    AchievementWindow.h/.cpp — Interface gráfica (ImGui).
+
+text
+
+
+---
+
+### 2. Arquivo: `README.md` (na raiz do projeto)
+
+Abra o `README.md` original do Shipwright (que já existe na raiz) e **adicione este bloco no topo**, deixando o texto original do Ship of Harkinian logo abaixo:
+
+```markdown
+> [!IMPORTANT]  
+> **Este é um fork focado no desenvolvimento de um Sistema de Conquistas.**
+> 
+> O objetivo deste fork é adicionar um sistema local de conquistas (estilo RetroAchievements) integrado nativamente à engine do Ship of Harkinian, baseado na versão **9.3.1 (Dewey Bravo)**.
+> 
+> 🏆 **39 conquistas** iniciais cobrindo história, sidequests, minigames e colecionáveis.
+> 💾 Salvamento automático por arquivo de save em JSON.
+> 🔔 Popups estilizados com ícones e sons originais do jogo.
+> 
+> Para a documentação técnica de como o sistema funciona e quais arquivos foram modificados, leia o [README do módulo](soh/soh/Enhancements/achievements/README.md).
+> 
+> ---
+> *Abaixo segue a documentação original do Ship of Harkinian.*
+
+<br>
+
 ![Ship of Harkinian](docs/shiptitle.darkmode.png#gh-dark-mode-only)
 ![Ship of Harkinian](docs/shiptitle.lightmode.png#gh-light-mode-only)
 
