@@ -3,7 +3,7 @@
 Sistema local de conquistas estilo RetroAchievements para o Ship of Harkinian.
 
 ## O que tem?
-- **39 conquistas** divididas em 5 categorias (História, Sidequest, Minigame, Coleta, Extras).
+- **49 conquistas** divididas em 5 categorias (História, Sidequest, Minigame, Coleta, Extras).
 - **Persistência por save file** (`achievements_save_<N>.json`), com migração automática do formato antigo `.txt`.
 - **Janela nativa** em `Settings -> Achievements` com filtros, barra de progresso e ícones.
 - **Popups customizados** com ícone do item, cor por categoria, duração de 6s e som de "Item Get" do OoT.

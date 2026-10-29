@@ -3,7 +3,7 @@
 > 
 > O objetivo deste fork é adicionar um sistema local de conquistas (estilo RetroAchievements) integrado nativamente à engine do Ship of Harkinian, baseado na versão **9.3.1 (Dewey Bravo)**.
 > 
-> 🏆 **39 conquistas** iniciais cobrindo história, sidequests, minigames e colecionáveis. **(NÃO FOI TESTADO TODAS AS CONQUISTAS)**
+> 🏆 **49 conquistas** iniciais cobrindo história, sidequests, minigames e colecionáveis.
 >
 > 💾 Salvamento automático por arquivo de save em JSON.
 >
