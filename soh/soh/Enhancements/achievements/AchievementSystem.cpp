@@ -32,7 +32,7 @@ static const char* CategoryIcon(AchievementCategory cat) {
             return GetTextureForItemId(ITEM_HEART_CONTAINER);
         case AchievementCategory::Misc:
         default:
-            return GetTextureForItemId(ITEM_RUPEE_GOLD);
+            return GetTextureForItemId(ITEM_ROCS_FEATHER);
     }
 }
 

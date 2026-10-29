@@ -496,7 +496,7 @@ std::vector<Achievement> BuildAchievements() {
         .check =
             [](PlayState* play) {
                 // AJUSTAR conforme o grep confirmar: >= 10 (count) ou >= 1000 (pontos)
-                return gSaveContext.highScores[HS_POE_POINTS] >= 10;
+                return gSaveContext.highScores[HS_POE_POINTS] >= 1000;
             },
     });
 
@@ -541,7 +541,7 @@ std::vector<Achievement> BuildAchievements() {
         .icon = Icon(ITEM_BOW),
         .check = [](PlayState* play) {
             // Extrai os 2 bits do UPG_QUIVER. Se for 2, é o nível máximo.
-            return ((gSaveContext.inventory.upgrades >> (UPG_QUIVER * 2)) & 3) == 2;
+            return ((gSaveContext.inventory.upgrades >> (UPG_QUIVER * 2)) & 3) == 3;
         },
     });
 
@@ -554,7 +554,7 @@ std::vector<Achievement> BuildAchievements() {
         .icon = Icon(ITEM_BOMB),
         .check = [](PlayState* play) {
             // Extrai os 2 bits do UPG_BOMB_BAG. Se for 2, é o nível máximo.
-            return ((gSaveContext.inventory.upgrades >> (UPG_BOMB_BAG * 2)) & 3) == 2;
+            return ((gSaveContext.inventory.upgrades >> (UPG_BOMB_BAG * 2)) & 3) == 3;
         },
     });
 
