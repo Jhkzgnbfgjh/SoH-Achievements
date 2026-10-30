@@ -154,7 +154,11 @@ std::vector<Achievement> BuildAchievements() {
         .category = AchievementCategory::Main,
         .hidden = false,
         .icon = Icon(ITEM_BOOTS_IRON),
-        .check = [](PlayState* play) { return INV_CONTENT(ITEM_BOOTS_IRON) == ITEM_BOOTS_IRON; },
+        .check =
+            [](PlayState* play) {
+                // Verifica o bit das Iron Boots no equipamento
+                return (gSaveContext.inventory.equipment & (1 << EQUIP_INV_BOOTS_IRON)) != 0;
+            },
     });
 
     list.push_back({
