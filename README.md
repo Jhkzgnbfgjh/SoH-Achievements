@@ -24,6 +24,7 @@
 > 
 > ### Este é o meu primeiro projeto de modding para o SoH. Ainda há muito espaço para melhorias (mais conquistas, otimizações), mas foi um grande aprendizado e o sistema está totalmente funcional.
 > 
+> 
 > ---
 > *Abaixo segue a documentação original do Ship of Harkinian.*
 
